@@ -12,7 +12,7 @@
 
 <body>
     <!-- MENU -->
-    <div class="flex flex-wrap place-items-center h-screen">
+    <div class="flex flex-wrap place-items-center">
         <section class="relative mx-auto">
             <!-- navbar -->
             <nav class="fixed top-0 left-0 z-50 flex justify-between bg-[#FFC400] text-[#512D6D] w-screen">
@@ -299,22 +299,30 @@
     </div>
     <script>
         let defaultTransform = 0;
+        const slider = document.getElementById("slider");
+        const next = document.getElementById("next");
+        const prev = document.getElementById("prev");
+
         function goNext() {
-            defaultTransform = defaultTransform - 398;
-            var slider = document.getElementById("slider");
+            defaultTransform -= 398;
             if (Math.abs(defaultTransform) >= slider.scrollWidth / 1.7)
                 defaultTransform = 0;
             slider.style.transform = "translateX(" + defaultTransform + "px)";
         }
-        next.addEventListener("click", goNext);
+
         function goPrev() {
-            var slider = document.getElementById("slider");
-            if (Math.abs(defaultTransform) === 0) defaultTransform = 0;
-            else defaultTransform = defaultTransform + 398;
+            if (Math.abs(defaultTransform) === 0) {
+                defaultTransform = 0;
+            } else {
+                defaultTransform += 398;
+            }
             slider.style.transform = "translateX(" + defaultTransform + "px)";
         }
+
+        next.addEventListener("click", goNext);
         prev.addEventListener("click", goPrev);
     </script>
+
 
 </body>
 
